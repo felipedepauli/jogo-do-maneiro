@@ -1,0 +1,53 @@
+.positives_list {
+
+}
+
+.positives_list__table {
+    display: grid;
+    grid-template-columns: 1000px;
+    justify-content: left;
+    padding: 100px;
+}
+
+.positives_list__table div {
+    text-align: left;
+}
+
+
+.positives_list__table--header,
+.positives_list__table--row {
+    display:grid;
+    grid-template-columns: 1fr 200px 200px;
+}
+
+.labels__groups {
+    display: flex;
+}
+
+.labels__unit {
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: 20px;
+}
+
+
+
+.colors {
+    color: white;
+}
+
+.colors.red {
+    background-color: rgba(255, 0, 0, 0.6);
+}
+.colors.green {
+    background-color: rgba(0, 128, 0, 0.6);
+}
+.colors.yellow {
+    background-color: rgba(255, 255, 0, 0.6);
+    color: rgba(0, 0, 0, 0.881);
+}
+.colors.blue {
+    background-color: blue;
+}
