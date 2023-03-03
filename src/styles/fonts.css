@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Fontinha';
+    src: url('/fonts/TiltNeon-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Fonts';
+    src: url('/fonts/SourceSansPro-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Fonts';
+    src: url('/fonts/SourceSansPro-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 10px;
+}
+body {
+    font-size: 1.6rem;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    font-family: 'Fonts';
+}

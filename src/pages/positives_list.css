@@ -6,48 +6,59 @@
     display: grid;
     grid-template-columns: 1000px;
     justify-content: left;
-    padding: 100px;
+    padding: 2rem 10rem;
 }
 
 .positives_list__table div {
     text-align: left;
 }
 
+.positives_list__table--row .actions_unit {
+    padding:.1rem .5rem;
+}
+
+.actions_unit:hover {
+    cursor: pointer;
+}
 
 .positives_list__table--header,
 .positives_list__table--row {
     display:grid;
-    grid-template-columns: 1fr 200px 200px;
+    grid-template-columns: 1fr 150px 200px;
+    align-items: center;
+    margin: 0.1rem;
+}
+.positives_list__table--row.positive {
+    display: none;
+}
+
+.positives_list__table--row.positive {
+    background-color: rgba(118, 118, 252, 0.1);
+}
+.positives_list__table--row.negative {
+    background-color: rgba(255, 0, 64, 0.2);
 }
 
 .labels__groups {
     display: flex;
+    padding: .2rem .5rem;
+}
+.groups__unit {
+    font-size: 0.8em;
+    padding: 0.1rem 0.3rem;
 }
 
 .labels__unit {
     display: flex;
     align-items: center;
-    font-size: 10px;
+    font-size: 0.8em;
     padding: 1px 5px;
     border-radius: 20px;
+    cursor: pointer;
+    transition: scale 0.5s ease-in-out, opacity 0.1s ease-in-out;
 }
-
-
-
-.colors {
-    color: white;
-}
-
-.colors.red {
-    background-color: rgba(255, 0, 0, 0.6);
-}
-.colors.green {
-    background-color: rgba(0, 128, 0, 0.6);
-}
-.colors.yellow {
-    background-color: rgba(255, 255, 0, 0.6);
-    color: rgba(0, 0, 0, 0.881);
-}
-.colors.blue {
-    background-color: blue;
+.labels__unit:hover {
+    background-color: aquamarine;
+    transform: scale(0.98);
+    opacity: 0.8;
 }

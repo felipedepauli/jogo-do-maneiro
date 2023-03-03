@@ -1,30 +1,99 @@
 import React from 'react'
-import Positive, { Link } from '../components/Positive.jsx'
+import Positive from '../components/Positive.jsx'
 import "./positives_list.css"
+import Modal from "../components/Modal.jsx"
 
-const labels = [
-    "Soninho",
-    "Cheirosim",
-    "Gamer"
-]
+// import { Route, Switch } from 'react-router-dom';
+
 const groups = [
-    "Boa Convivência",
-    "Adultinho daora",
-    "Vida sem Apuros",
-    "Diversão sem Fim"
+    "Boa Convivência",  // 00
+    "Adultinho daora",  // 01
+    "Vida sem Apuros",  // 02
+    "Diversão sem Fim"  // 03
+]
+const labels = [
+    "Soninho",          // 00
+    "Cheirosim",        // 01
+    "Gamer",            // 02
+    "Leitura Caótica",  // 03
+    "Dr Heitor",        // 04
+    "Qualquer hora",    // 05
+    "Gatins",           // 06
+    "Soninho",          // 07
+    "Artista",          // 08
+    "Rei das Finanças", // 09
+    "Teus BOs",         // 10
+    "4a Parede",        // 11
+    "Comilança",        // 12
+    "Galerinha Real",   // 13
+    "Atleta"            // 14
 ]
 const colors = [
-    "red",
-    "green",
-    "yellow",
-    "blue"
+    "red",          // 00
+    "green",        // 01
+    "yellow",       // 02
+    "blue_green",   // 03
+    "blue",         // 04
+    "orange",       // 05
+    "pink",         // 06
+    "cyan",         // 07
+    "brown",        // 08
+    "purple",       // 09
+    "gray",         // 10
+    "black",        // 11
+    "red_orange",   // 12
+    "red_purple",   // 13
+    "green_yellow", // 14
+    
 ]
 
-class Module extends React.Component {
-    getLabel(){
-        return {
+const actions = [
+    "positive",
+    "negative"
+]
 
+const visibility = true;
+
+class PositivesList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            visibility: "hidden",
+            positive: 0,
+            labels: -1,
+            groups: -1
         }
+    }
+    setModal = (visibility_, positive_) => {
+        this.setState({
+            visibility: visibility_,
+            positive: positive_
+        });
+        console.log(positive_)
+    }
+    setLabel = (labels_) => {
+        if (this.state.labels != -1) {
+            this.setState({
+                labels: -1
+            })
+        } else {
+            this.setState({
+                labels: labels_
+            })
+        }
+        console.log("Label = ", labels_)
+    }
+    setGroup = (groups_) => {
+        if (this.state.groups != -1) {
+            this.setState({
+                groups: -1
+            })
+        } else {
+            this.setState({
+                groups: groups_
+            })
+        }
+        console.log("Group = ", groups_)     
     }
     render() {
         return (
@@ -34,38 +103,35 @@ class Module extends React.Component {
                     <div className="positives_list__table--header">
                         <div>Positivo</div>
                         <div>Grupo</div>
-                        <div>Labels</div>
+                        <div>Momentos</div>
                     </div>
                     {this.props.positives.map((pos, key) => (
-                        <div key={key} className="positives_list__table--row">
-                            <Link
-                                url={pos.url} 
-                                text={pos.text}
-                                />
-                            <div className="groups">{
-                                pos.groups.map((label, key) => (
-                                    <div className={`groups__unit colors ${colors[label]}`} key={key}>{groups[label]}</div>
-                                )
-                            )}</div>
-                            <div className="labels__groups">{
-                                pos.label.map((label, key) => (
-                                    <div className={`labels__unit colors ${colors[label]}`} key={key}>{labels[label]}</div>
-                                )
-                            )}</div>
-                        </div>
+                        <Positive
+                            key      = {key}
+                            id       = {key}
+                            pos      = {pos}
+                            colors   = {colors}
+                            actions  = {actions}
+                            groups   = {groups}
+                            labels   = {labels}
+                            hidden   = {[this.state.labels, this.state.groups]}
+                            setModal = {this.setModal}
+                            setLabel = {this.setLabel}
+                            setGroup = {this.setGroup}
+                            />
                     ))}
                 </div>
-                <div>
-                    <Positive
-                        inner="Texto"/>
-                </div>
+                <Modal
+                    visibility  = {this.state.visibility}
+                    setModal    = {this.setModal} 
+                    pos         = {this.props.positives[this.state.positive]}
+                    background  = {colors[this.props.positives[this.state.positive].groups]}
+                    />
             </div>
         )
     }
 }
-
-
-export default Module
+export default PositivesList
 
 
 

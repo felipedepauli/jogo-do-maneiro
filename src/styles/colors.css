@@ -1,0 +1,49 @@
+.colors {
+    color: white;
+}
+.colors.red {
+    background-color: rgba(255, 0, 0, 0.6);
+}
+.colors.green {
+    background-color: rgba(0, 128, 0, 0.6);
+}
+.colors.yellow {
+    background-color: rgba(251, 251, 127, 0.992);
+    color: rgba(0, 0, 0, 0.881);
+}
+.colors.blue {
+    background-color: blue;
+}
+.colors.orange {
+    background-color: orange;
+}
+.colors.pink {
+    background-color: rgb(177, 90, 105);
+}
+.colors.cyan {
+    background-color: cyan;
+}
+.colors.brown {
+    background-color: brown;
+}
+.colors.purple {
+    background-color: purple;
+}
+.colors.gray {
+    background-color: gray;
+}
+.colors.black {
+    background-color: black;
+}
+.colors.red_orange {
+    background-color: rgba(255, 69, 0);
+}
+.colors.red_purple {
+    background-color: rgba(128, 0, 128);
+}
+.colors.green_yellow {
+    background-color: rgba(173, 255, 47);
+}
+.colors.blue_green {
+    background-color: rgb(0, 192, 154);
+}
