@@ -1,9 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
 import PositivesList from './pages/PositivesList.jsx'
 import Data from "./data/positives.json"
 import './App.css';
 import './styles/fonts.css'
+import './styles/common.css'
 
 function App() {
   return (

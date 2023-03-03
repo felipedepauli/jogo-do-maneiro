@@ -1,6 +1,7 @@
 import React from 'react'
 import Positive from '../components/Positive.jsx'
 import "./positives_list.css"
+import "../styles/common.css"
 import Modal from "../components/Modal.jsx"
 
 // import { Route, Switch } from 'react-router-dom';
@@ -52,8 +53,6 @@ const actions = [
     "negative"
 ]
 
-const visibility = true;
-
 class PositivesList extends React.Component {
     constructor(props) {
         super(props);
@@ -72,7 +71,7 @@ class PositivesList extends React.Component {
         console.log(positive_)
     }
     setLabel = (labels_) => {
-        if (this.state.labels != -1) {
+        if (this.state.labels !== -1) {
             this.setState({
                 labels: -1
             })
@@ -83,21 +82,9 @@ class PositivesList extends React.Component {
         }
         console.log("Label = ", labels_)
     }
-    setGroup = (groups_) => {
-        if (this.state.groups != -1) {
-            this.setState({
-                groups: -1
-            })
-        } else {
-            this.setState({
-                groups: groups_
-            })
-        }
-        console.log("Group = ", groups_)     
-    }
     render() {
         return (
-            <div>
+            <div className="positives_list">
                 <h2>Lista de Positivos</h2>
                 <div className="positives_list__table">
                     <div className="positives_list__table--header">
@@ -114,10 +101,9 @@ class PositivesList extends React.Component {
                             actions  = {actions}
                             groups   = {groups}
                             labels   = {labels}
-                            hidden   = {[this.state.labels, this.state.groups]}
+                            hidden   = {[this.state.labels]}
                             setModal = {this.setModal}
                             setLabel = {this.setLabel}
-                            setGroup = {this.setGroup}
                             />
                     ))}
                 </div>
@@ -132,6 +118,3 @@ class PositivesList extends React.Component {
     }
 }
 export default PositivesList
-
-
-

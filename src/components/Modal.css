@@ -1,45 +1,67 @@
-.modular {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    top: 0;
-    height: 100vh;
-    width: 100vw;
+.modal {
+    /*
+        Este é o modal da caixa do box de positivos.
+        É um fixed que ocupa toda a tela e tem fundo transparente.
+        Alinha o box de positivos no centro.
+    */
+    position        : fixed;
+    display         : flex;
+    flex-direction  : column;
+    align-items     : center;
+    top             : 0;
+    height          : 100vh;
+    width           : 100vw;
     background-color: rgba(78, 78, 78, 0.9);
 }
-
-.modular_box {
-    color: white;
-    padding: 10px 100px 50px 100px;
-    height: auto;
+.modal_box {
+    /* 
+    Este é o box de positivos.
+    É um blox centralizado que possui todas as informações do positivo.
+    Possui:
+    1. Título           .modal_box__title
+    2. Subtítulos       .modal_box__subtitle
+    3. Bloco razão      .modal_box__reason
+    4. Botão de fechar  .modal_box__close
+    */
+    color           : white;
+    padding         : 2rem 5rem;
+    min-height      : 80vh;
+    max-height      : 85vh;
+    width           : 85vw;
+    overflow        : hidden;
 }
-.modular > .title_1 {
-    background-color: aliceblue;
-    width: 1000px;
-    height: 10rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.modal_box__title {
+    height          : 10rem;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    background-color: rgba(211, 211, 211, 0.192);
 }
-.modular_box > h2 {
+.modal_box__subtitle {
     background-color: rgba(0, 0, 0, 0.5);
+    font-size: 1.5em;
+    padding: 1rem;
 }
-
 .hidden {
     display: none;
 }
 
-.modular_box__reasons {
-    width: 800px;
+.modal_box__reasons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    margin: 2rem 0;
+    max-height: 100%;
+    overflow-y: scroll;
 }
 
-.modular_box__reasons--unit {
+.modal_box__reasons--unit {
     text-align: justify;
-    margin: .5rem 0;
+    margin: 2rem;
+    font-size: 1.2em;
 }
 
-.modular_box__close {
+.modal_box__close {
     position: relative;
     margin: 2rem;
     color: rgb(0, 0, 113);
@@ -52,11 +74,11 @@
     justify-content: center;
     border-radius: 50%;
 }
-.modular_box__close::before {
+.modal_box__close::before {
     display: block;
     content: "X";
     
 }
-.modular_box__close:hover {
+.modal_box__close:hover {
     cursor: pointer;
 }
