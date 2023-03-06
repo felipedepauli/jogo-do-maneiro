@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Positive from '../components/Positive.jsx'
 import "./positives_list.css"
 import "../styles/common.css"
@@ -53,68 +53,94 @@ const actions = [
     "negative"
 ]
 
-class PositivesList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            visibility: "hidden",
-            positive: 0,
-            labels: -1,
-            groups: -1
+function PositivesList(props) {
+    const [positives, setPositives] = useState([...props.positives])
+    const [modal, setModal] =  useState({
+            visibility  : "hidden",
+            positive    :  0,
+            labels      : -1,
+            groups      : -1
+    })
+    const setModalHandler = (visibility_, positive_) => {
+        setModal({
+            ...modal,
+            visibility  : visibility_,
+            positive    : parseInt(positive_)
+        });
+        if (visibility_ == "hidden") {
+            console.log("Modal closed")
+        } else {
+            console.log("Modal opened with positive = ", positive_)
         }
     }
-    setModal = (visibility_, positive_) => {
-        this.setState({
-            visibility: visibility_,
-            positive: positive_
-        });
-        console.log(positive_)
+    const toggleAgreement = (id, reasonId) => {
+        const updatedPositives = positives.map(positive => {
+            if (parseInt(positive.id) === id) {
+                positive.reasons[reasonId].agreement = (positive.reasons[reasonId].agreement == "accepted") ? "denied" :  "accepted"
+                console.log(positive)
+            }
+            return positive
+        })
+       
+        setPositives([
+            ...updatedPositives
+        ])
+
     }
-    setLabel = (labels_) => {
-        if (this.state.labels !== -1) {
-            this.setState({
+    const setLabelHandler = (labels_) => {
+        if (parseInt(modal.labels) !== -1) {
+            console.log("vamos filtrar")
+            setModal({
+                ...modal,
                 labels: -1
             })
         } else {
-            this.setState({
+            console.log("vamos liberar")
+            setModal({
+                ...modal,
                 labels: labels_
             })
         }
         console.log("Label = ", labels_)
     }
-    render() {
-        return (
-            <div className="positives_list">
-                <h2>Lista de Positivos</h2>
-                <div className="positives_list__table">
-                    <div className="positives_list__table--header">
-                        <div>Positivo</div>
-                        <div>Grupo</div>
-                        <div>Momentos</div>
-                    </div>
-                    {this.props.positives.map((pos, key) => (
-                        <Positive
-                            key      = {key}
-                            id       = {key}
-                            pos      = {pos}
-                            colors   = {colors}
-                            actions  = {actions}
-                            groups   = {groups}
-                            labels   = {labels}
-                            hidden   = {[this.state.labels]}
-                            setModal = {this.setModal}
-                            setLabel = {this.setLabel}
-                            />
-                    ))}
+    useEffect(() => {
+    }, [modal])
+    useEffect(() => {
+    }, [positives])
+    return (
+        <div className="positives_list">
+            <h2>Lista de Positivos</h2>
+            <div className="positives_list__table">
+                <div className="positives_list__table--header">
+                    <div>Positivo</div>
+                    <div>Grupo</div>
+                    <div>Momentos</div>
+                    <div>Status</div>
+                    <div>Score</div>
                 </div>
-                <Modal
-                    visibility  = {this.state.visibility}
-                    setModal    = {this.setModal} 
-                    pos         = {this.props.positives[this.state.positive]}
-                    background  = {colors[this.props.positives[this.state.positive].groups]}
-                    />
+                {positives.map((positive, key) => (
+                    <Positive
+                        key      = {key}
+                        positive = {positive}
+                        colors   = {colors}
+                        actions  = {actions}
+                        groups   = {groups}
+                        labels   = {labels}
+                        hidden   = {modal.labels}
+                        setModal = {setModalHandler}
+                        setLabel = {setLabelHandler}
+                        />
+                ))}
+
             </div>
-        )
-    }
+            <Modal
+                visibility  = {modal.visibility}
+                setModal    = {setModalHandler} 
+                positive    = {positives[modal.positive]}
+                background  = {colors[positives[modal.positive].groups]}
+                toggleAgreement = {toggleAgreement}
+                />
+        </div>
+    )
 }
 export default PositivesList

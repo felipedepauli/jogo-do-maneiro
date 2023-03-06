@@ -11,10 +11,21 @@
     top             : 0;
     height          : 100vh;
     width           : 100vw;
-    background-color: rgba(78, 78, 78, 0.9);
+    left            : 0;
+    background-color: rgba(37, 54, 81, 0.81);
 }
+
+/* 
+    .modal_box           total = 85vh + 5vh(padding) = 90vh
+    .mobal_box__title    total = 10vh
+    .modal_box__subtitle total = 7vh
+
+*/
+
+
+
 .modal_box {
-    /* 
+    /*
     Este é o box de positivos.
     É um blox centralizado que possui todas as informações do positivo.
     Possui:
@@ -24,43 +35,92 @@
     4. Botão de fechar  .modal_box__close
     */
     color           : white;
-    padding         : 2rem 5rem;
-    min-height      : 80vh;
-    max-height      : 85vh;
+    padding         : 5vh 3vw;
+    height          : 85vh;
     width           : 85vw;
     overflow        : hidden;
 }
+.modal_box__wrapper {
+    background-color: rgb(139, 139, 139);
+}
 .modal_box__title {
-    height          : 10rem;
+    height          : 10vh;
     display         : flex;
     align-items     : center;
     justify-content : center;
     background-color: rgba(211, 211, 211, 0.192);
 }
-.modal_box__subtitle {
-    background-color: rgba(0, 0, 0, 0.5);
-    font-size: 1.5em;
-    padding: 1rem;
+.modal_box__tags {
+    display: flex;
+    justify-content: flex-start;
+    padding: 1em 0;
 }
+.modal_box__tags--tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height          : 7vh;
+    text-align:center;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 1.1em;
+    padding: 1rem;
+    width: 20em;
+    margin-right: .2em;
+    transition: opacity .2s ease-in;
+}
+.modal_box__tags--tag:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
 .hidden {
     display: none;
 }
 
 .modal_box__reasons {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     justify-content: center;
-    margin: 2rem 0;
-    max-height: 100%;
+    padding: 1em 0px;
+    max-height: 70%;
     overflow-y: scroll;
+    overflow-x: hidden;
+}
+.modal_box__reasons--row {
+    display: grid;
+    grid-template-columns: 1fr 3em;
+    margin: 0.2em 0;
+    opacity: 1;
+    padding:1em;
+}
+.modal_box__reasons--row--accepted {
+    opacity: 0.4;
+    background-color: rgba(0, 128, 0, 0.268);
 }
 
-.modal_box__reasons--unit {
+.modal_box__reasons--row--unit {
     text-align: justify;
-    margin: 2rem;
+    margin: 0.2em;
     font-size: 1.2em;
 }
+.modal_box__new {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(211, 211, 211, 0.192);
+    height: 8%;
+    margin: 1% 0 3% 0;
+}
+.modal_box__new input[type="text"] {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 1em;
+    padding: .1em 2em;
 
+}
 .modal_box__close {
     position: relative;
     margin: 2rem;
@@ -74,11 +134,36 @@
     justify-content: center;
     border-radius: 50%;
 }
+.modal_box__reasons--row-agreement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal_box__reasons--row-agreement input[type="checkbox"] {
+    width: 2rem;
+    height: 2rem;
+    margin: 0.5rem;
+}
 .modal_box__close::before {
     display: block;
-    content: "X";
-    
+    content: "x";  
 }
 .modal_box__close:hover {
     cursor: pointer;
+}
+
+/* Define a cor da thumb e da track */
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+/* Define a cor da parte fixa da barra de rolagem */
+::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
 }

@@ -7,20 +7,20 @@
     display: grid;
     grid-template-columns: 1fr;
     justify-content: left;
-    padding: 3rem 20rem;
+    padding: 3rem 5rem;
     background-color: rgba(255, 255, 255, 0.3);
 }
-/* .positives_list__table--header > div{
+.positives_list__table--header > div{
     background-color: rgb(79, 70, 95);
     color: white;
     font-weight: bold;
     margin: 0 0.05em;
-} */
+}
 
 .positives_list__table--header,
 .positives_list__table--row {
     display:grid;
-    grid-template-columns: 1fr 10em 10em;
+    grid-template-columns: 1fr 10em 10em 5em 3em;
     width: 100%;
     align-items: center;
     margin: 0.1rem;
@@ -65,3 +65,14 @@
     transform: scale(0.98);
     opacity: 0.8;
 }
+
+
+
+
+.positives_list__table--row .status {
+    color: blue;
+}
+.positives_list__table--row .score {
+    color: green;
+}
+
