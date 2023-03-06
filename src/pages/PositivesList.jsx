@@ -4,8 +4,6 @@ import "./positives_list.css"
 import "../styles/common.css"
 import Modal from "../components/Modal.jsx"
 
-// import { Route, Switch } from 'react-router-dom';
-
 const groups = [
     "Boa Convivência",  // 00
     "Adultinho daora",  // 01
@@ -54,13 +52,30 @@ const actions = [
 ]
 
 function PositivesList(props) {
-    const [positives, setPositives] = useState([...props.positives])
+    const [loading, setLoading] = useState(true)
+    const [positives, setPositives] = useState([])
     const [modal, setModal] =  useState({
             visibility  : "hidden",
             positive    :  0,
             labels      : -1,
             groups      : -1
     })
+    const fetchBd = () => {
+        console.log("wowowow")
+        fetch('http://localhost:3001/read')
+            .then(response => response.json())
+            .then(data => {
+                setPositives([
+                    ...data
+                ])
+                setLoading(false)
+                console.log(data) 
+            })
+            .catch(error => {
+                console.error(error);
+                setLoading(false)
+            });
+    }
     const setModalHandler = (visibility_, positive_) => {
         setModal({
             ...modal,
@@ -104,9 +119,13 @@ function PositivesList(props) {
         console.log("Label = ", labels_)
     }
     useEffect(() => {
-    }, [modal])
-    useEffect(() => {
-    }, [positives])
+        fetchBd()
+    }, [])
+
+    if (loading) {
+        return <div>Carregando...</div>;
+    }
+
     return (
         <div className="positives_list">
             <h2>Lista de Positivos</h2>
